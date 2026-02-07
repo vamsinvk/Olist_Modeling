@@ -1,0 +1,163 @@
+
+
+# 📦 Olist E-Commerce Churn Predictor (v1.1 - In Development)
+
+## 🚧 Status: Active Development
+
+* **Current Phase:** v1.1 Feature Engineering (Physics & Psychology Layers)
+* **Next Milestone:** NLP Integration & Hyperparameter Tuning
+
+---
+
+## 📖 Executive Summary
+
+This project is an end-to-end Machine Learning pipeline predicting **Customer Dissatisfaction (Churn Risk)** for Olist.
+
+**The Goal:** We are evolving from a standard "Black Box" model (v1.0) to an "Explainable First-Principles" engine (v1.1). Instead of relying on lucky correlations, v1.1 is being built to understand the **Physics** (Distance, Weight) and **Psychology** (Expectations) of delivery failures.
+
+---
+
+## 🚀 Project Evolution
+
+### **v1.0: The Hybrid Baseline (Stable)**
+
+* **Architecture:** Hybrid Ensemble (Random Forest + CatBoost).
+* **Data:** Raw CSVs (Orders, Reviews, basic Features).
+* **Status:** **Complete.** This serves as the benchmark we are trying to beat.
+* **Performance:** Established a baseline F1-Score (approx 0.30 - 0.35) with high accuracy but low recall on churn.
+
+### **v1.1: The "Physics Engine" (Under Construction)**
+
+* **Architecture:** Dual-Engine Hybrid with **Class Balancing**.
+* **New Data Pipeline:** 8-Table Join Strategy (Orders + Items + Products + Payments + Reviews + Customers + Sellers + Geolocation).
+* **Status:** **🧪 Experimental / Testing.**
+* **Current Focus:** Validating that "Real World" features (Distance, Volumetric Weight) improve prediction before adding Text (NLP).
+
+---
+
+## 🛠️ Feature Engineering Strategy (v1.1 Dev)
+
+We are currently testing 3 new "Intelligence Layers" to replace raw data:
+
+### 1. 🧠 The Psychology Layer (Expectation)
+
+* **Feature:** `expectation_gap`
+* **Hypothesis:** Measuring the gap between *Promised Date* and *Actual Date* predicts anger better than raw delivery time.
+* **Status:** ✅ Validated (Currently #1 Predictor).
+
+### 2. 🌍 The Physics Layer (Logistics)
+
+* **Feature:** `distance_km` (Haversine Formula) & `volumetric_weight`
+* **Hypothesis:** Physical difficulty (Long distance + Bulky item) creates "Silent Risk" that simple models miss.
+* **Status:** ✅ Validated (Top 10 Predictor).
+
+### 3. 💰 The Financial Layer (Anxiety)
+
+* **Feature:** `freight_ratio`
+* **Hypothesis:** High shipping costs relative to item price lower the customer's patience threshold.
+* **Status:** ✅ Validated.
+
+---
+
+## 📊 Progress Report (Preliminary Metrics)
+
+We are tracking v1.1's progress against the v1.0 baseline.
+
+| Metric | v1.0 Hybrid (Baseline) | v1.1 Dev (Physics Only) | v1.1 Dev (Physics + NLP) |
+| --- | --- | --- | --- |
+| **Status** | **Final** | **Testing** | *Not Started* |
+| **F1-Score (Bad Class)** | ~0.35 | **0.45** (Current Snapshot) | *Target: >0.70* |
+| **Recall (Catch Rate)** | Low | **40%** | *Target: >75%* |
+| **Precision** | High | **51%** | *TBD* |
+
+### 🧪 Current Snapshot Analysis (v1.1 Physics)
+
+* **The Good:** We have achieved **40% Recall** using *only* math and physics (no text reading yet). This proves the new features work.
+* **The Bad:** Precision is lower (more false alarms) because we are aggressively penalizing the model for missing bad orders.
+* **Next Step:** Add the NLP layer to filter out the false alarms and boost Precision.
+
+---
+
+## 📂 Project Structure (v1.1 Branch)
+
+```text
+├── data/
+│   ├── raw/                   # Original Olist CSVs
+│   └── processed/             # v1.1 Cleaned Data
+│       ├── final_dataset_basic.csv  # CURRENT: Physics/Math Data (No Text)
+│       └── final_dataset_nlp.csv    # NEXT: Full Data (With Text)
+├── models/
+│   ├── rf_balanced.pkl        # v1.1 Random Forest Component
+│   ├── cb_balanced.pkl        # v1.1 CatBoost Component
+│   └── encoders_balanced.pkl  # v1.1 Encoders
+├── src/
+│   ├── data/                  # ETL Pipeline
+│   │   ├── process_orders.py  # Psychology Logic
+│   │   ├── process_products.py # Physics Logic
+│   │   └── make_dataset.py    # Master Join
+│   ├── models/                # Training Pipeline
+│   │   ├── train_model_balanced.py # Current Experiment
+│   │   └── evaluate_balanced.py    # Progress Report
+│   └── tests/                 # Unit Tests
+└── README.md
+
+```
+
+---
+
+## ⚙️ How to Run the Current Build
+
+# 🏆 Final Project Report: The Impact of NLP in E-Commerce Prediction
+
+## 1. Executive Summary
+This project aimed to predict Customer Dissatisfaction (Churn) on the Olist E-commerce platform. We compared two distinct approaches:
+1.  **Non-NLP Model:** Using only metadata (Price, Dates, Categories).
+2.  **NLP Model:** Using the actual text of customer reviews.
+
+**The Verdict:** Language is powerful. The NLP model outperformed the Non-NLP model by **32%**, proving that customer sentiment cannot be fully captured by numbers alone.
+
+---
+
+## 2. Head-to-Head Comparison
+
+We trained over 10 different models. The **Random Forest** architecture won in both categories.
+
+| Metric | Non-NLP Model (v1.0) | NLP Model (v1.0) | Improvement |
+| :--- | :--- | :--- | :--- |
+| **Input Data** | Price, Freight, Delivery Time | Review Text (TF-IDF) | -- |
+| **F1-Score** | **0.54** | **0.72** | **+33%** 🚀 |
+| **Recall (Catch Rate)** | 0.41 | 0.65 | **+58%** |
+| **Precision** | 0.79 | 0.81 | +2.5% |
+
+### 📊 Visualizing the Gap
+*(See `reports/figures/final_impact_chart.png`)*
+
+---
+
+## 3. Deep Dive Analysis
+
+### A. The Non-NLP Model (F1: 0.54)
+* **What it does:** It predicts anger based on *operational failures*.
+* **Strengths:** It is excellent at catching **Late Deliveries**. If a package is late, the math knows the customer will be mad.
+* **Weaknesses:** It completely misses **Product Defects**.
+    * *Example:* A phone arrives on time (perfect operational data) but the screen is broken. The Non-NLP model guesses "Happy Customer," but the reality is "Angry Customer." This is why Recall is stuck at 41%.
+
+### B. The NLP Model (F1: 0.72)
+* **What it does:** It listens to the *Voice of the Customer*.
+* **Strengths:** It catches everything the math misses.
+    * Words like *"broken"*, *"fake"*, *"wrong color"*, and *"rude"* are immediate red flags.
+* **The Result:** Recall jumped from 41% to **65%**. We caught an additional 24% of angry customers simply by reading their words.
+
+---
+
+## 4. Conclusion & Recommendation
+
+**"Operational data tells you *WHEN* a failure happened. NLP data tells you *WHAT* happened."**
+
+* **For Real-Time Prevention:** Use the **Non-NLP Model**. It can flag risky orders (like late shipments) *before* the package arrives.
+* **For Customer Retention:** Use the **NLP Model**. It is the only way to identify defects and bad seller behavior.
+
+**Final Recommendation:** A production system should use the Non-NLP model for **Early Warning** and the NLP model for **Triage**.
+
+***
+*Project Completed: Jan 2026*

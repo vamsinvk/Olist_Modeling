@@ -1,0 +1,210 @@
+ml/
+├── 1.0
+│   ├── data
+│   │   ├── gold
+│   │   │   ├── final_table.csv
+│   │   │   ├── master_table.csv
+│   │   │   └── nlp_master_table.csv
+│   │   ├── modeling
+│   │   │   ├── nlp
+│   │   │   │   ├── X_test_nlp.csv
+│   │   │   │   ├── X_train_nlp.csv
+│   │   │   │   ├── y_test_nlp.csv
+│   │   │   │   └── y_train_nlp.csv
+│   │   │   ├── nlp_ready_data.csv
+│   │   │   ├── X_test.csv
+│   │   │   ├── X_train.csv
+│   │   │   ├── y_test.csv
+│   │   │   └── y_train.csv
+│   │   └── processed
+│   │       ├── customers_data.csv
+│   │       ├── geolocation_data.csv
+│   │       ├── items_data.csv
+│   │       ├── orders_data.csv
+│   │       ├── payments_data.csv
+│   │       ├── products_data.csv
+│   │       └── reviews_data.csv
+│   ├── models
+│   │   ├── catboost
+│   │   │   └── catboost_model.bin
+│   │   ├── catboost_info
+│   │   │   ├── learn
+│   │   │   │   └── events.out.tfevents
+│   │   │   ├── tmp
+│   │   │   ├── catboost_training.json
+│   │   │   ├── learn_error.tsv
+│   │   │   └── time_left.tsv
+│   │   ├── deep_learning
+│   │   │   ├── dnn_model.h5
+│   │   │   └── scaler.pkl
+│   │   ├── final
+│   │   │   ├── catboost_info
+│   │   │   │   ├── learn
+│   │   │   │   │   └── events.out.tfevents
+│   │   │   │   ├── test
+│   │   │   │   │   └── events.out.tfevents
+│   │   │   │   ├── tmp
+│   │   │   │   ├── catboost_training.json
+│   │   │   │   ├── learn_error.tsv
+│   │   │   │   ├── test_error.tsv
+│   │   │   │   └── time_left.tsv
+│   │   │   ├── best_final_model.pkl
+│   │   │   ├── category_risk_map.pkl
+│   │   │   ├── seller_risk_map.pkl
+│   │   │   └── train_catboost.py
+│   │   ├── final_ensemble
+│   │   ├── final_hybrid
+│   │   │   ├── hybrid_cb.bin
+│   │   │   ├── hybrid_rf.pkl
+│   │   │   ├── le_cat.pkl
+│   │   │   └── le_state.pkl
+│   │   ├── nlp
+│   │   │   ├── best_nlp_model.pkl
+│   │   │   └── rf_model_nlp.pkl
+│   │   ├── best_model.pkl
+│   │   ├── best_model_optimized.pkl
+│   │   ├── best_model_xgb.pkl
+│   │   ├── rf_model_v1.pkl
+│   │   └── train_ensemble_stacking.py
+│   ├── reports
+│   │   └── figures
+│   │       ├── final
+│   │       │   └── final_importance.png
+│   │       ├── nlp
+│   │       │   └── nlp_feature_importance.png
+│   │       ├── bar_state_scores.png
+│   │       ├── bar_weight_class.png
+│   │       ├── boxplot_freight_ratio.png
+│   │       ├── boxplot_time_vs_stars.png
+│   │       ├── feature_importance_rf.png
+│   │       ├── heatmap_money_corr.png
+│   │       ├── hist_broken_weight.png
+│   │       ├── line_patience_curve.png
+│   │       ├── scatter_map_brazil.png
+│   │       └── tree_visualization.png
+│   └── src
+│       ├── eda
+│       │   ├── 01_inspect_gold.py
+│       │   ├── 02_visualize_time.py
+│       │   ├── 03_visualize_money.py
+│       │   ├── 04_visualize_geography.py
+│       │   └── 05_visualize_product.py
+│       ├── features
+│       │   ├── add_nlp.py
+│       │   └── build_final_dataset.py
+│       ├── inspect_data
+│       │   ├── inspect_customers.py
+│       │   ├── inspect_geolocation.py
+│       │   ├── inspect_items.py
+│       │   ├── inspect_orders.py
+│       │   ├── inspect_payments.py
+│       │   ├── inspect_products.py
+│       │   └── inspect_reviews.py
+│       ├── models
+│       │   ├── 01_preprocess.py
+│       │   ├── 02_train_rf.py
+│       │   ├── 03_feature_importance.py
+│       │   ├── 04_visualize_tree.py
+│       │   ├── compare_models.py
+│       │   ├── optimize_xgboost.py
+│       │   ├── train_deep_learning.py
+│       │   ├── train_final_model.py
+│       │   └── train_xgboost.py
+│       ├── nlp_pipeline
+│       │   ├── 01_merge_text.py
+│       │   ├── 02_add_sentiment.py
+│       │   ├── 03_train_nlp_model.py
+│       │   └── 04_compare_nlp_models.py
+│       ├── Process_Data
+│       │   ├── process_customers.py
+│       │   ├── process_geolocation.py
+│       │   ├── process_items.py
+│       │   ├── process_order.py
+│       │   ├── process_payments.py
+│       │   ├── process_products.py
+│       │   └── process_reviews.py
+│       ├── analyze_time_vs_stars.py
+│       ├── audit.py
+│       ├── clean.py
+│       ├── create_master_table.py
+│       ├── dashboard.py
+│       ├── data_loader.py
+│       ├── predict_new_order.py
+│       └── test.py
+├── 1.1
+│   ├── data
+│   │   └── processed
+│   │       ├── customers_data.csv
+│   │       ├── final_dataset_basic.csv
+│   │       ├── final_dataset_nlp.csv
+│   │       ├── geolocation_data.csv
+│   │       ├── items_data.csv
+│   │       ├── marketing_data.csv
+│   │       ├── orders_data.csv
+│   │       ├── payments_data.csv
+│   │       ├── products_data.csv
+│   │       ├── reviews_data.csv
+│   │       └── sellers_data.csv
+│   ├── models
+│   │   ├── catboost_info
+│   │   │   ├── learn
+│   │   │   │   └── events.out.tfevents
+│   │   │   ├── tmp
+│   │   │   ├── catboost_training.json
+│   │   │   ├── learn_error.tsv
+│   │   │   └── time_left.tsv
+│   │   ├── cb_model_v1.1.pkl
+│   │   ├── encoders.pkl
+│   │   ├── evaluate_model.py
+│   │   ├── rf_model_v1.1.pkl
+│   │   ├── train_model.py
+│   │   ├── X_test_balanced.csv
+│   │   └── y_test_balanced.csv
+│   └── src
+│       ├── data
+│       │   ├── make_dataset.py
+│       │   ├── process_customers.py
+│       │   ├── process_geolocation.py
+│       │   ├── process_items.py
+│       │   ├── process_marketing.py
+│       │   ├── process_order.py
+│       │   ├── process_payments.py
+│       │   ├── process_products.py
+│       │   ├── process_reviews.py
+│       │   └── process_sellers.py
+│       └── test
+│           ├── Employee detailed explanation.docx
+│           ├── exception.py
+│           ├── grade_exception.py
+│           ├── notes.md
+│           ├── validate_customers.py
+│           ├── validate_dataset.py
+│           ├── validate_geolocation.py
+│           ├── validate_items.py
+│           ├── validate_marketing.py
+│           ├── validate_orders.py
+│           ├── validate_payments.py
+│           ├── validate_products.py
+│           ├── validate_reviews.py
+│           └── validate_sellers.py
+├── olist
+│   ├── Brazilian dataset
+│   │   ├── archive
+│   │   │   ├── olist_customers_dataset.csv
+│   │   │   ├── olist_geolocation_dataset.csv
+│   │   │   ├── olist_order_items_dataset.csv
+│   │   │   ├── olist_order_payments_dataset.csv
+│   │   │   ├── olist_order_reviews_dataset.csv
+│   │   │   ├── olist_orders_dataset.csv
+│   │   │   ├── olist_products_dataset.csv
+│   │   │   ├── olist_sellers_dataset.csv
+│   │   │   └── product_category_name_translation.csv
+│   │   └── olist_customers_dataset.csv
+│   │       └── olist_customers_dataset.csv
+│   └── marketing
+│       └── archive
+│           ├── olist_closed_deals_dataset.csv
+│           └── olist_marketing_qualified_leads_dataset.csv
+└── requirements.txt
+
+Process finished with exit code 0
